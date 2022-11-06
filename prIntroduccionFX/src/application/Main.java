@@ -115,30 +115,64 @@ public class Main extends Application {
 //			primaryStage.getIcons().add(new Image("/application/icono.png"));
 //			primaryStage.show();
 		
-//		// Ejerccicio  2
-//			StackPane panel=new  StackPane();
-//			Rectangle rect = new Rectangle(20,20,300,300);
-//		    rect.setFill(Color.DARKGREEN);
-//		    rect.setLayoutX(0);
-//		    rect.setLayoutY(0);
-//		    Rectangle rect2 = new Rectangle(20,20,250,250);
-//		    rect2.setFill(Color.GREEN);
-//		    rect2.setLayoutX(1);
-//		    rect2.setLayoutY(1);
-//		    Rectangle rect3 = new Rectangle(20,20,200,200);
-//		    rect3.setFill(Color.AQUAMARINE);
-//		    rect3.setLayoutX(2);
-//		    rect3.setLayoutY(2);
-//		    
-//		    panel.getChildren().addAll(rect,rect2,rect3);
-//			Scene scene= new Scene(panel,300,300);
-//			primaryStage.setScene(scene);
-//			primaryStage.setTitle("Introducion JavaFX");
-//			primaryStage.getIcons().add(new Image("/application/icono.png"));
-//			primaryStage.show();
-		
+
+	//ejercici2
+			
+			//caso A
+		/*	
+			StackPane panel=new  StackPane();
+			Rectangle rect = new Rectangle(20,20,300,300);
+		    rect.setFill(Color.DARKGREEN);
+		    rect.setLayoutX(0);
+		    rect.setLayoutY(0);
+		    Rectangle rect2 = new Rectangle(20,20,250,250);
+		    rect2.setFill(Color.GREEN);
+		    rect2.setLayoutX(1);
+		    rect2.setLayoutY(1);
+		    Rectangle rect3 = new Rectangle(20,20,200,200);
+		    rect3.setFill(Color.AQUAMARINE);
+		    rect3.setLayoutX(2);
+		    rect3.setLayoutY(2);
+		    
+		    panel.getChildren().addAll(rect,rect2,rect3);
+			Scene scene= new Scene(panel,300,300);
+			primaryStage.setScene(scene);
+			primaryStage.setTitle("Introducion JavaFX");
+			primaryStage.getIcons().add(new Image("/application/icono.png"));
+			primaryStage.show();
+				
+		*/
+			
+			//caso B
+			
+		/*	
+			StackPane panel=new  StackPane();
+			Rectangle rect = new Rectangle(20,20,400,400);
+		    rect.setFill(Color.DARKGREEN);
+		    rect.setLayoutX(0);
+		    rect.setLayoutY(0);
+		    Rectangle rect2 = new Rectangle(20,20,400,320);
+		    rect2.setFill(Color.AQUAMARINE);
+		    
+		    Rectangle rect3 = new Rectangle(20,20,320,320);
+		    rect3.setFill(Color.BLUE);
+		    rect3.setLayoutX(2);
+		    rect3.setLayoutY(2);
+		    
+		    panel.getChildren().addAll(rect,rect2,rect3);
+			Scene scene= new Scene(panel,400,400);
+			primaryStage.setScene(scene);
+			primaryStage.setTitle("Introducion JavaFX");
+			primaryStage.getIcons().add(new Image("/application/icono.png"));
+			primaryStage.show();
+			
+		*/
+			
+			
+			
 			
 	// ejecicio 3
+			
 			
 			Button btn1= new Button("1");
 			Button btn2= new Button("2");
@@ -165,12 +199,14 @@ public class Main extends Application {
 			panel.add(btn0, 1, 3);
 			panel.add(btnLlamar, 3, 1);
 			panel.add(btnColgar, 3, 2);
-			Scene scene= new Scene(panel,400,300);
+			Scene scene= new Scene(panel,350,200);
 			
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Introducion JavaFX");
 			primaryStage.getIcons().add(new Image("/application/icono.png"));
 			primaryStage.show();	
+
+			
 			
 		} catch(Exception e) {
 			e.printStackTrace();
