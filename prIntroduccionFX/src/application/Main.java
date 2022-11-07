@@ -168,12 +168,34 @@ public class Main extends Application {
 			
 		*/
 			
+			//caso b2
+			
+			
+BorderPane panel = new BorderPane();
+			
+			Rectangle r_centro = new Rectangle(300,300,Color.DARKBLUE);
+			Rectangle r_arriba = new Rectangle(400,50,Color.DARKGREEN);
+			Rectangle r_abajo = new Rectangle(400,50,Color.DARKGREEN);
+			Rectangle r_izquierda = new Rectangle(50,300,Color.AQUAMARINE);
+			Rectangle r_derecha = new Rectangle(50,300,Color.AQUAMARINE);
+			
+			panel.setCenter(r_centro);
+			panel.setTop(r_arriba);
+			panel.setBottom(r_abajo);
+			panel.setRight(r_derecha);
+			panel.setLeft(r_izquierda);
+			
+			Scene scene= new Scene(panel,400,400);
+			primaryStage.setScene(scene);
+			primaryStage.setTitle("Introducion JavaFX");
+			primaryStage.getIcons().add(new Image("/application/icono.png"));
+			primaryStage.show();	
 			
 			
 			
 	// ejecicio 3
 			
-			
+		/*	
 			Button btn1= new Button("1");
 			Button btn2= new Button("2");
 			Button btn3= new Button("3");
@@ -199,14 +221,14 @@ public class Main extends Application {
 			panel.add(btn0, 1, 3);
 			panel.add(btnLlamar, 3, 1);
 			panel.add(btnColgar, 3, 2);
-			Scene scene= new Scene(panel,350,200);
+			Scene scene= new Scene(panel,350,00);
 			
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Introducion JavaFX");
 			primaryStage.getIcons().add(new Image("/application/icono.png"));
 			primaryStage.show();	
 
-			
+			*/
 			
 		} catch(Exception e) {
 			e.printStackTrace();
