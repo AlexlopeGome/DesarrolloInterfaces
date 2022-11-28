@@ -75,16 +75,37 @@ public class SampleControllerVideojuegos {
 	
 	@FXML
 	public void aniadirLibro(ActionEvent event) {
-		Videojuego v=new Videojuego(
-				txtNombre.getText(),
-				Float.parseFloat(txtPrecio.getText()),
-				cbConsolas.getValue().toString(),
-				cbPEGIs.getValue().hashCode()
-				
-				
-				);
-		listaVideojuegos.add(v);
+		
+		if (esNumero(txtPrecio.getText())) {
+			Videojuego v=new Videojuego(
+					txtNombre.getText(),
+					Float.parseFloat(txtPrecio.getText()),
+					cbConsolas.getValue().toString(),
+					cbPEGIs.getValue().hashCode()
+					
+					
+					);
+			listaVideojuegos.add(v);
+			txtNombre.clear();
+			txtPrecio.clear();
+			cbConsolas.getSelectionModel().clearSelection();
+			cbPEGIs.getSelectionModel().clearSelection();
+		}
+		
+		
 	}
 	
-	
+	public static boolean esNumero(String s) {
+
+        boolean resultado;
+
+        try {
+            Integer.parseInt(s);
+            resultado = true;
+        } catch (NumberFormatException excepcion) {
+            resultado = false;
+        }
+
+        return resultado;
+    }
 }
