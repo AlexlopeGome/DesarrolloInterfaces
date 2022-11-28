@@ -4,11 +4,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 
@@ -75,22 +77,40 @@ public class SampleControllerVideojuegos {
 	
 	@FXML
 	public void aniadirLibro(ActionEvent event) {
-		
-		if (esNumero(txtPrecio.getText())) {
-			Videojuego v=new Videojuego(
-					txtNombre.getText(),
-					Float.parseFloat(txtPrecio.getText()),
-					cbConsolas.getValue().toString(),
-					cbPEGIs.getValue().hashCode()
-					
-					
-					);
-			listaVideojuegos.add(v);
-			txtNombre.clear();
-			txtPrecio.clear();
-			cbConsolas.getSelectionModel().clearSelection();
-			cbPEGIs.getSelectionModel().clearSelection();
+		if(txtNombre.getText().isEmpty()
+			||txtPrecio.getText().isEmpty()
+			||cbConsolas.getSelectionModel().isEmpty()
+			||cbPEGIs.getSelectionModel().isEmpty()) {
+			
+			Alert alerta= new Alert(AlertType.WARNING);
+			alerta.setTitle("Error al Insertar");
+			alerta.setHeaderText
+			("falta algun campo");
+			alerta.setContentText
+			("Por Fabor ,las campos que faltan");
+			alerta.show();	
+			
+		}else {
+			
+			if (esNumero(txtPrecio.getText())) {
+				Videojuego v=new Videojuego(
+						txtNombre.getText(),
+						Float.parseFloat(txtPrecio.getText()),
+						cbConsolas.getValue().toString(),
+						cbPEGIs.getValue().hashCode()
+						
+						
+						);
+				listaVideojuegos.add(v);
+				txtNombre.clear();
+				txtPrecio.clear();
+				cbConsolas.getSelectionModel().clearSelection();
+				cbPEGIs.getSelectionModel().clearSelection();
+			}
+			
 		}
+		
+		
 		
 		
 	}
