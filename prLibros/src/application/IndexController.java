@@ -70,13 +70,39 @@ public class IndexController {
 	
 	@FXML
 	public void aniadirLibro(ActionEvent event) {
-		Libro l=new Libro(
-				txtTitulo.getText(),
-				cbEditorial.getValue().toString(),
-				txtAutor.getText(),
-				Integer.parseInt(txtPaginas.getText())
-				);
-		listaLibros.add(l);
+
+		if (esNumero(txtPaginas.getText())) {
+			
+			Libro l=new Libro(
+					txtTitulo.getText(),
+					cbEditorial.getValue().toString(),
+					txtAutor.getText(),
+					Integer.parseInt(txtPaginas.getText())
+					);
+			listaLibros.add(l);
+			txtTitulo.clear();
+			cbEditorial.getSelectionModel().clearSelection();
+			txtAutor.clear();
+			txtPaginas.clear();
+		}
+		
+		
 	}
+	
+    public static boolean esNumero(String s) {
+
+        boolean resultado;
+
+        try {
+            Integer.parseInt(s);
+            resultado = true;
+        } catch (NumberFormatException excepcion) {
+            resultado = false;
+        }
+
+        return resultado;
+    }
+
+	
 	
 }
