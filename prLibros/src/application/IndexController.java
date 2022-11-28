@@ -4,6 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
@@ -70,21 +72,50 @@ public class IndexController {
 	
 	@FXML
 	public void aniadirLibro(ActionEvent event) {
-
-		if (esNumero(txtPaginas.getText())) {
+		
+		if(txtTitulo.getText().isEmpty()
+				||cbEditorial.getSelectionModel().isEmpty() 
+				||txtAutor.getText().isEmpty()
+				||txtPaginas.getText().isEmpty()){
 			
-			Libro l=new Libro(
-					txtTitulo.getText(),
-					cbEditorial.getValue().toString(),
-					txtAutor.getText(),
-					Integer.parseInt(txtPaginas.getText())
-					);
-			listaLibros.add(l);
-			txtTitulo.clear();
-			cbEditorial.getSelectionModel().clearSelection();
-			txtAutor.clear();
-			txtPaginas.clear();
+			Alert alerta= new Alert(AlertType.WARNING);
+			alerta.setTitle("Error al Insertar");
+			alerta.setHeaderText
+			("falta algun campo");
+			alerta.setContentText
+			("Por Fabor ,las campos que faltan");
+			alerta.show();
+			
+			
+		}else {
+			
+			if (esNumero(txtPaginas.getText())) {
+				
+				Libro l=new Libro(
+						txtTitulo.getText(),
+						cbEditorial.getValue().toString(),
+						txtAutor.getText(),
+						Integer.parseInt(txtPaginas.getText())
+						);
+				listaLibros.add(l);
+				txtTitulo.clear();
+				cbEditorial.getSelectionModel().clearSelection();
+				txtAutor.clear();
+				txtPaginas.clear();
+			}else {
+				Alert alerta= new Alert(AlertType.ERROR);
+				alerta.setTitle("Error al Insertar");
+				alerta.setHeaderText
+				("No se ha introducido un numero el la pagina");
+				alerta.setContentText
+				("Por Fabor ,introduzca número en las paginas");
+				alerta.show();
+			}	
+			
+			
 		}
+		
+		
 		
 		
 	}
