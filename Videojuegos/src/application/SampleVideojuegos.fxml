@@ -81,7 +81,7 @@
                         </GridPane>
                      </center>
                      <bottom>
-                        <Button mnemonicParsing="false" text="Añadir" BorderPane.alignment="CENTER">
+                        <Button fx:id="btnAniadir" mnemonicParsing="false" onAction="#aniadirLibro" text="Añadir" BorderPane.alignment="CENTER">
                            <BorderPane.margin>
                               <Insets bottom="20.0" />
                            </BorderPane.margin>

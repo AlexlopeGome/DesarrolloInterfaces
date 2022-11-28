@@ -2,7 +2,9 @@ package application;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -21,7 +23,8 @@ public class SampleControllerVideojuegos {
 	private ChoiceBox cbPEGIs;
 	@FXML
 	private TableView tablaVideojuegos; 
-	
+	@FXML
+	private Button btnAniadir;
 	@FXML
 	private TableColumn <Videojuego, String> columnaNombre;
 	
@@ -69,5 +72,19 @@ public class SampleControllerVideojuegos {
 		
 		tablaVideojuegos.setItems(listaVideojuegos);
 	}
+	
+	@FXML
+	public void aniadirLibro(ActionEvent event) {
+		Videojuego v=new Videojuego(
+				txtNombre.getText(),
+				Float.parseFloat(txtPrecio.getText()),
+				cbConsolas.getValue().toString(),
+				cbPEGIs.getValue().hashCode()
+				
+				
+				);
+		listaVideojuegos.add(v);
+	}
+	
 	
 }
