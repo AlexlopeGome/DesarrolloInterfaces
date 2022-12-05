@@ -1,5 +1,10 @@
 package application;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -50,7 +55,9 @@ public class IndexController {
 	private ObservableList<Libro> listaLibros = FXCollections
 			.observableArrayList(new Libro("La Biblia", "Planeta", "Jesús", 500));
 
-	public ObservableList<String> listaEditoriales = FXCollections.observableArrayList("Planeta", "Altaya", "Kadokawa",
+	public ObservableList<String> listaEditoriales = FXCollections.observableArrayList("Planeta", 
+			"Altaya", 
+			"Kadokawa",
 			"Penguin Libros");
 
 	@FXML
@@ -62,8 +69,45 @@ public class IndexController {
 		columnEditorial.setCellValueFactory(new PropertyValueFactory<>("editorial"));
 		columnAutor.setCellValueFactory(new PropertyValueFactory<>("autor"));
 		columnPaginas.setCellValueFactory(new PropertyValueFactory<>("paginas"));
+		ObservableList listaLibrosBD = getLibrosBd ();
+		tableLibros.setItems(listaLibrosBD);
+		
+		
+	}
+	
+	private ObservableList<Libro>getLibrosBd(){
+		
+		ObservableList<Libro>listaLibrosBd=
+				 FXCollections.observableArrayList();
+		
+		DatabaseConnection dbConection= new DatabaseConnection ();
+		Connection connection=dbConection.getConnection();
+		
 
-		tableLibros.setItems(listaLibros);
+		try {
+			String query="select * from libros";
+			PreparedStatement ps= connection.prepareStatement(query);
+			ResultSet rs =ps.executeQuery();
+			while(rs.next()) {
+				
+				Libro libro =new Libro(
+						rs.getString("titulo"),
+						rs.getString("editorial"),
+						rs.getString("autor"),
+						rs.getInt("paginas")
+	
+						);
+				listaLibrosBd.add(libro);
+						
+				
+			}
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				 
+		return listaLibrosBd;
 	}
 
 	@FXML

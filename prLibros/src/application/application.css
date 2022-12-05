@@ -1,1 +1,9 @@
-/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.button{
+	
+	-fx-font-size: 12pt;
+	-fx-text-fill: white;
+	-fx-background-color: blue;
+}
+#panel_izq{
+	-fx-background-color: lightblue;
+}
