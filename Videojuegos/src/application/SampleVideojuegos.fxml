@@ -46,7 +46,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <BorderPane layoutX="1.0" layoutY="-2.0" prefHeight="375.0" prefWidth="298.0">
+                  <BorderPane id="panelNuevoVideojuego" layoutX="1.0" layoutY="-2.0" prefHeight="375.0" prefWidth="298.0">
                      <top>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nuevo Videojuego" textAlignment="CENTER" BorderPane.alignment="CENTER">
                            <font>
