@@ -1,5 +1,10 @@
 package application;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -61,10 +66,48 @@ public class SampleControllerVideojuegos {
 		columnaPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
 		columnaConsola.setCellValueFactory(new PropertyValueFactory<>("consola"));
 		columnaPEGI.setCellValueFactory(new PropertyValueFactory<>("PEGI"));
-
-		tablaVideojuegos.setItems(listaVideojuegos);
+		ObservableList listaVideojuegosBD = getVideojuegosBd ();
+		tablaVideojuegos.setItems(listaVideojuegosBD);
 	}
 
+private ObservableList<Videojuego>getVideojuegosBd(){
+		
+		ObservableList<Videojuego>ListaVideojuegosBd=
+				 FXCollections.observableArrayList();
+		
+		DatabaseConnection dbConection= new DatabaseConnection ();
+		Connection connection=dbConection.getConnection();
+		
+
+		try {
+			String query="select * from videojuegos";
+			PreparedStatement ps= connection.prepareStatement(query);
+			ResultSet rs =ps.executeQuery();
+			while(rs.next()) {
+				
+				Videojuego videojuego =new Videojuego(
+						rs.getString("nombre"),
+						rs.getFloat("precio"),
+						rs.getString("consola"),
+						rs.getInt("PEGI")
+	
+						);
+				ListaVideojuegosBd.add(videojuego);
+						
+				
+			}
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				 
+		return ListaVideojuegosBd;
+	}
+	
+	
+	
+	
 	@FXML
 	public void aniadirLibro(ActionEvent event) {
 		if (txtNombre.getText().isEmpty() || txtPrecio.getText().isEmpty() || cbConsolas.getSelectionModel().isEmpty()
