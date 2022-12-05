@@ -106,8 +106,11 @@ public class IndexController {
 
 		int indiceSeleccionado = tableLibros.getSelectionModel().getSelectedIndex();
 
+		System.out.println(indiceSeleccionado);
+		
 		if (indiceSeleccionado >= 0) {
 			tableLibros.getItems().remove(indiceSeleccionado);
+			
 		} else {
 
 			Alert alerta = new Alert(AlertType.ERROR);
