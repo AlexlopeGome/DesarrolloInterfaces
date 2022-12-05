@@ -99,15 +99,15 @@ public class SampleControllerVideojuegos {
 
 		int indiceSeleccionado = tablaVideojuegos.getSelectionModel().getSelectedIndex();
 
-		if (indiceSeleccionado >= 0) {
-			tablaVideojuegos.getItems().remove(indiceSeleccionado);
-		} else {
-
+		if (indiceSeleccionado <= -1) {
 			Alert alerta = new Alert(AlertType.ERROR);
 			alerta.setTitle("Error en el Borrado");
 			alerta.setHeaderText("No ha seleccionado ningun Videojuego en la tabla para borrar");
 			alerta.setContentText("Por favor ,selecciona un Videojuego");
 			alerta.show();
+		} else {
+			tablaVideojuegos.getItems().remove(indiceSeleccionado);
+			tablaVideojuegos.getSelectionModel().clearSelection();
 
 		}
 
