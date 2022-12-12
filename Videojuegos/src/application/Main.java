@@ -15,7 +15,7 @@ public class Main extends Application {
 			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("SampleVideojuegos.fxml"));
 			Scene scene = new Scene(root,600,400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setTitle("Vidiojuegos");
+			primaryStage.setTitle("Videojuegos");
 			primaryStage.getIcons().add(new Image("/application/icono.png"));
 			primaryStage.setScene(scene);
 			primaryStage.show();

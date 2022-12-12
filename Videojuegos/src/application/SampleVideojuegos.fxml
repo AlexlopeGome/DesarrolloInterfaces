@@ -84,8 +84,8 @@
                      <bottom>
                         <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Button fx:id="btnAniadir" mnemonicParsing="false" onAction="#aniadirLibro" text="Añadir" />
-                              <Button fx:id="btnBorrado" mnemonicParsing="false" onAction="#borrarLibro" text="Borrar" />
+                              <Button fx:id="btnAniadir" mnemonicParsing="false" onAction="#aniadirVideojuego" text="Añadir" />
+                              <Button fx:id="btnBorrado" mnemonicParsing="false" onAction="#borrarVideojuego" text="Borrar" />
                            </children>
                         </HBox>
                      </bottom>

@@ -5,11 +5,23 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Videojuego {
-
+	private int id;
 	private SimpleStringProperty nombre;
 	private SimpleFloatProperty precio;
 	private SimpleStringProperty consola;
 	private SimpleIntegerProperty PEGI;
+	
+	public Videojuego (int id,String nombre, float precio, 
+			String consola, int PEGI) {
+		this.id=id;
+		this.nombre = new SimpleStringProperty(nombre);
+		this.precio = new SimpleFloatProperty(precio);
+		this.consola = new SimpleStringProperty(consola);
+		this.PEGI = new SimpleIntegerProperty(PEGI);
+	}
+	public int getId(){
+		return id;
+	}
 	
 	public Videojuego (String nombre, float precio, 
 			String consola, int PEGI) {
