@@ -53,7 +53,7 @@ public class IndexController {
 	private TableColumn<Libro, Integer> columnPaginas;
 
 	private ObservableList<Libro> listaLibros = FXCollections
-			.observableArrayList(new Libro("La Biblia", "Planeta", "Jesús", 500));
+			.observableArrayList();
 
 	public ObservableList<String> listaEditoriales = FXCollections.observableArrayList("Planeta", 
 			"Altaya", 
@@ -91,6 +91,7 @@ public class IndexController {
 			while(rs.next()) {
 				
 				Libro libro =new Libro(
+						rs.getInt("id"),
 						rs.getString("titulo"),
 						rs.getString("editorial"),
 						rs.getString("autor"),
@@ -112,7 +113,9 @@ public class IndexController {
 
 	@FXML
 	public void aniadirLibro(ActionEvent event) {
-
+		DatabaseConnection dbConection= new DatabaseConnection ();
+		Connection connection=dbConection.getConnection();
+		
 		if (txtTitulo.getText().isEmpty() || cbEditorial.getSelectionModel().isEmpty() || txtAutor.getText().isEmpty()
 				|| txtPaginas.getText().isEmpty()) {
 
@@ -124,15 +127,43 @@ public class IndexController {
 
 		} else {
 
+			
+			
 			if (esNumero(txtPaginas.getText())) {
 
 				Libro l = new Libro(txtTitulo.getText(), cbEditorial.getValue().toString(), txtAutor.getText(),
 						Integer.parseInt(txtPaginas.getText()));
 				listaLibros.add(l);
+				
 				txtTitulo.clear();
 				cbEditorial.getSelectionModel().clearSelection();
 				txtAutor.clear();
 				txtPaginas.clear();
+				
+				try {
+				String query = "insert into libros"
+						+"(titulo,editorial,autor,paginas)"
+						+"VALUES(?,?,?,?)";
+				
+				PreparedStatement ps= connection.prepareStatement(query);
+					ps.setString(1, l.getTitulo());
+					ps.setString(2, l.getEditorial());
+					ps.setString(3,l.getAutor());
+					ps.setInt(4,l.getPaginas());
+					ps.executeUpdate();
+					
+					
+					connection.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				ObservableList listaLibrosBD = getLibrosBd ();
+				tableLibros.setItems(listaLibrosBD);
+				
+				
+				
 			} else {
 				Alert alerta = new Alert(AlertType.ERROR);
 				alerta.setTitle("Error al Insertar");
@@ -140,17 +171,15 @@ public class IndexController {
 				alerta.setContentText("Por Fabor ,introduzca número en las paginas");
 				alerta.show();
 			}
-
+			
 		}
-
+		
 	}
 
 	@FXML
 	public void borrarLibro(ActionEvent event) {
 
 		int indiceSeleccionado = tableLibros.getSelectionModel().getSelectedIndex();
-
-		System.out.println(indiceSeleccionado);
 		
 		if (indiceSeleccionado <= -1) {
 			Alert alerta = new Alert(AlertType.ERROR);
@@ -162,9 +191,27 @@ public class IndexController {
 			
 		} else {
 
-			tableLibros.getItems().remove(indiceSeleccionado);
-			tableLibros.getSelectionModel().clearSelection();
-
+			DatabaseConnection dbConection= new DatabaseConnection ();
+			Connection connection=dbConection.getConnection();
+			
+			try {
+				
+				String query = "delete from libros where id = ?";
+				PreparedStatement ps= connection.prepareStatement(query);
+				Libro libro=tableLibros.getSelectionModel().getSelectedItem();
+				ps.setInt(1,libro.getId());
+				ps.executeUpdate();
+				
+				tableLibros.getSelectionModel().clearSelection();
+				
+				ObservableList listaLibrosBD = getLibrosBd ();
+				tableLibros.getItems().remove(indiceSeleccionado);
+				
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 	}
